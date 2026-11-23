@@ -1,0 +1,763 @@
+{
+  "title": "Sri Lanka Air Quality - DSD Level (2023-2026)",
+  "id": "theekshanaudara/sri-lanka-air-quality",
+  "subtitle": "Daily air pollutants and US AQI for all 339 Sri Lankan DSDs",
+  "description": "Daily air quality statistics (mean, minimum, maximum) for all 339 Divisional Secretariat Divisions of Sri Lanka, from 2023-01-01 to yesterday, updated every day.\n\nVariables: PM2.5, PM10, nitrogen dioxide, sulphur dioxide, ozone, carbon monoxide, aerosol optical depth, dust, UV index and US AQI.\n\nSource: Copernicus Atmosphere Monitoring Service (CAMS) model data via the Open-Meteo Air Quality API. Values are model estimates on a ~45 km grid, not station readings. Boundaries: UN OCHA / Survey Department of Sri Lanka.\n\nCode and full documentation: https://github.com/th33k/dataset-sri-lanka-air-quality",
+  "licenses": [
+    {
+      "name": "CC-BY-4.0"
+    }
+  ],
+  "keywords": [
+    "environment",
+    "pollution",
+    "asia",
+    "time series",
+    "tabular"
+  ],
+  "resources": [
+    {
+      "path": "sri_lanka_district_air_quality_summary.csv",
+      "description": "District-level averages and peaks over the full record (2023-01-01 to yesterday) for the 25 districts. Rebuilt every day.",
+      "schema": {
+        "fields": [
+          {
+            "name": "province_name",
+            "description": "Province name.",
+            "type": "string"
+          },
+          {
+            "name": "district_name",
+            "description": "District name.",
+            "type": "string"
+          },
+          {
+            "name": "total_dsds",
+            "description": "Number of DSDs in the district.",
+            "type": "numeric"
+          },
+          {
+            "name": "total_records",
+            "description": "Number of DSD-day rows for the district.",
+            "type": "numeric"
+          },
+          {
+            "name": "avg_pm25",
+            "description": "Mean of daily mean PM2.5 (µg/m³) over the full record.",
+            "type": "numeric"
+          },
+          {
+            "name": "max_pm25",
+            "description": "Highest hourly PM2.5 (µg/m³) over the full record.",
+            "type": "numeric"
+          },
+          {
+            "name": "avg_pm10",
+            "description": "Mean of daily mean PM10 (µg/m³).",
+            "type": "numeric"
+          },
+          {
+            "name": "max_pm10",
+            "description": "Highest hourly PM10 (µg/m³).",
+            "type": "numeric"
+          },
+          {
+            "name": "avg_no2",
+            "description": "Mean of daily mean NO2 (µg/m³).",
+            "type": "numeric"
+          },
+          {
+            "name": "avg_so2",
+            "description": "Mean of daily mean SO2 (µg/m³).",
+            "type": "numeric"
+          },
+          {
+            "name": "avg_aqi",
+            "description": "Mean of daily mean US AQI.",
+            "type": "numeric"
+          },
+          {
+            "name": "peak_aqi",
+            "description": "Highest hourly US AQI over the full record.",
+            "type": "numeric"
+          }
+        ]
+      }
+    },
+    {
+      "path": "sri_lanka_dsd_air_quality_2023.csv",
+      "description": "Daily air quality for all 339 DSDs of Sri Lanka in 2023: one row per DSD per day, no missing values.",
+      "schema": {
+        "fields": [
+          {
+            "name": "date",
+            "description": "Observation date in Sri Lanka Standard Time (UTC+05:30).",
+            "type": "datetime"
+          },
+          {
+            "name": "province_name",
+            "description": "One of the 9 administrative Provinces of Sri Lanka.",
+            "type": "string"
+          },
+          {
+            "name": "province_pcode",
+            "description": "Official UN OCHA standard administrative P-code for the Province.",
+            "type": "string"
+          },
+          {
+            "name": "district_name",
+            "description": "One of the 25 administrative Districts of Sri Lanka.",
+            "type": "string"
+          },
+          {
+            "name": "district_pcode",
+            "description": "Official UN OCHA standard administrative P-code for the District.",
+            "type": "string"
+          },
+          {
+            "name": "dsd_name",
+            "description": "Name of the Divisional Secretariat Division (ADM Level 3).",
+            "type": "string"
+          },
+          {
+            "name": "dsd_pcode",
+            "description": "Official UN OCHA standard administrative P-code for the DSD.",
+            "type": "string"
+          },
+          {
+            "name": "latitude",
+            "description": "Latitude of the DSD polygon centroid (WGS84, decimal degrees).",
+            "type": "numeric"
+          },
+          {
+            "name": "longitude",
+            "description": "Longitude of the DSD polygon centroid (WGS84, decimal degrees).",
+            "type": "numeric"
+          },
+          {
+            "name": "area_sqkm",
+            "description": "Geographic surface area of the division in square kilometers (km²).",
+            "type": "numeric"
+          },
+          {
+            "name": "pm2_5_mean",
+            "description": "Daily 24-hour mean mass concentration of fine particles (≤ 2.5 µm). Unit: µg/m³.",
+            "type": "numeric"
+          },
+          {
+            "name": "pm2_5_min",
+            "description": "Diurnal minimum hourly concentration of PM2.5. Unit: µg/m³.",
+            "type": "numeric"
+          },
+          {
+            "name": "pm2_5_max",
+            "description": "Diurnal peak (maximum) hourly concentration of PM2.5. Unit: µg/m³.",
+            "type": "numeric"
+          },
+          {
+            "name": "pm10_mean",
+            "description": "Daily 24-hour mean mass concentration of coarse respirable particles (≤ 10 µm). Unit: µg/m³.",
+            "type": "numeric"
+          },
+          {
+            "name": "pm10_min",
+            "description": "Diurnal minimum hourly concentration of PM10. Unit: µg/m³.",
+            "type": "numeric"
+          },
+          {
+            "name": "pm10_max",
+            "description": "Diurnal peak (maximum) hourly concentration of PM10. Unit: µg/m³.",
+            "type": "numeric"
+          },
+          {
+            "name": "nitrogen_dioxide_mean",
+            "description": "Daily arithmetic mean concentration of Nitrogen Dioxide (NO2). Unit: µg/m³.",
+            "type": "numeric"
+          },
+          {
+            "name": "nitrogen_dioxide_max",
+            "description": "Diurnal peak hourly concentration of NO2. Unit: µg/m³.",
+            "type": "numeric"
+          },
+          {
+            "name": "sulphur_dioxide_mean",
+            "description": "Daily arithmetic mean concentration of Sulphur Dioxide (SO2). Unit: µg/m³.",
+            "type": "numeric"
+          },
+          {
+            "name": "sulphur_dioxide_max",
+            "description": "Diurnal peak hourly concentration of SO2. Unit: µg/m³.",
+            "type": "numeric"
+          },
+          {
+            "name": "ozone_mean",
+            "description": "Daily mean ground-level Ozone (O3). Unit: µg/m³.",
+            "type": "numeric"
+          },
+          {
+            "name": "ozone_max",
+            "description": "Diurnal peak hourly ground-level Ozone concentration. Unit: µg/m³.",
+            "type": "numeric"
+          },
+          {
+            "name": "carbon_monoxide_mean",
+            "description": "Daily arithmetic mean concentration of Carbon Monoxide (CO). Unit: µg/m³.",
+            "type": "numeric"
+          },
+          {
+            "name": "carbon_monoxide_max",
+            "description": "Diurnal peak hourly concentration of CO. Unit: µg/m³.",
+            "type": "numeric"
+          },
+          {
+            "name": "aerosol_optical_depth_mean",
+            "description": "Daily average total Aerosol Optical Depth at 550 nm. Unit: Dimensionless.",
+            "type": "numeric"
+          },
+          {
+            "name": "aerosol_optical_depth_max",
+            "description": "Diurnal peak Aerosol Optical Depth. Unit: Dimensionless.",
+            "type": "numeric"
+          },
+          {
+            "name": "dust_mean",
+            "description": "Daily average atmospheric mineral dust mass concentration. Unit: µg/m³.",
+            "type": "numeric"
+          },
+          {
+            "name": "dust_max",
+            "description": "Diurnal peak atmospheric dust concentration. Unit: µg/m³.",
+            "type": "numeric"
+          },
+          {
+            "name": "uv_index_max",
+            "description": "Daily peak hourly UV index. Unit: Index (0–12+).",
+            "type": "numeric"
+          },
+          {
+            "name": "us_aqi_mean",
+            "description": "Daily mean of Open-Meteo's hourly US AQI (each hour is the highest pollutant sub-index). Unit: Index (0–500).",
+            "type": "numeric"
+          },
+          {
+            "name": "us_aqi_max",
+            "description": "Daily maximum of the hourly US AQI. Unit: Index (0–500).",
+            "type": "numeric"
+          },
+          {
+            "name": "aqi_category",
+            "description": "US EPA category of us_aqi_max: Good (0-50), Moderate (51-100), Unhealthy for Sensitive Groups (101-150), Unhealthy (151-200), Very Unhealthy (201-300), Hazardous (301+).",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "path": "sri_lanka_dsd_air_quality_2024.csv",
+      "description": "Daily air quality for all 339 DSDs of Sri Lanka in 2024: one row per DSD per day, no missing values.",
+      "schema": {
+        "fields": [
+          {
+            "name": "date",
+            "description": "Observation date in Sri Lanka Standard Time (UTC+05:30).",
+            "type": "datetime"
+          },
+          {
+            "name": "province_name",
+            "description": "One of the 9 administrative Provinces of Sri Lanka.",
+            "type": "string"
+          },
+          {
+            "name": "province_pcode",
+            "description": "Official UN OCHA standard administrative P-code for the Province.",
+            "type": "string"
+          },
+          {
+            "name": "district_name",
+            "description": "One of the 25 administrative Districts of Sri Lanka.",
+            "type": "string"
+          },
+          {
+            "name": "district_pcode",
+            "description": "Official UN OCHA standard administrative P-code for the District.",
+            "type": "string"
+          },
+          {
+            "name": "dsd_name",
+            "description": "Name of the Divisional Secretariat Division (ADM Level 3).",
+            "type": "string"
+          },
+          {
+            "name": "dsd_pcode",
+            "description": "Official UN OCHA standard administrative P-code for the DSD.",
+            "type": "string"
+          },
+          {
+            "name": "latitude",
+            "description": "Latitude of the DSD polygon centroid (WGS84, decimal degrees).",
+            "type": "numeric"
+          },
+          {
+            "name": "longitude",
+            "description": "Longitude of the DSD polygon centroid (WGS84, decimal degrees).",
+            "type": "numeric"
+          },
+          {
+            "name": "area_sqkm",
+            "description": "Geographic surface area of the division in square kilometers (km²).",
+            "type": "numeric"
+          },
+          {
+            "name": "pm2_5_mean",
+            "description": "Daily 24-hour mean mass concentration of fine particles (≤ 2.5 µm). Unit: µg/m³.",
+            "type": "numeric"
+          },
+          {
+            "name": "pm2_5_min",
+            "description": "Diurnal minimum hourly concentration of PM2.5. Unit: µg/m³.",
+            "type": "numeric"
+          },
+          {
+            "name": "pm2_5_max",
+            "description": "Diurnal peak (maximum) hourly concentration of PM2.5. Unit: µg/m³.",
+            "type": "numeric"
+          },
+          {
+            "name": "pm10_mean",
+            "description": "Daily 24-hour mean mass concentration of coarse respirable particles (≤ 10 µm). Unit: µg/m³.",
+            "type": "numeric"
+          },
+          {
+            "name": "pm10_min",
+            "description": "Diurnal minimum hourly concentration of PM10. Unit: µg/m³.",
+            "type": "numeric"
+          },
+          {
+            "name": "pm10_max",
+            "description": "Diurnal peak (maximum) hourly concentration of PM10. Unit: µg/m³.",
+            "type": "numeric"
+          },
+          {
+            "name": "nitrogen_dioxide_mean",
+            "description": "Daily arithmetic mean concentration of Nitrogen Dioxide (NO2). Unit: µg/m³.",
+            "type": "numeric"
+          },
+          {
+            "name": "nitrogen_dioxide_max",
+            "description": "Diurnal peak hourly concentration of NO2. Unit: µg/m³.",
+            "type": "numeric"
+          },
+          {
+            "name": "sulphur_dioxide_mean",
+            "description": "Daily arithmetic mean concentration of Sulphur Dioxide (SO2). Unit: µg/m³.",
+            "type": "numeric"
+          },
+          {
+            "name": "sulphur_dioxide_max",
+            "description": "Diurnal peak hourly concentration of SO2. Unit: µg/m³.",
+            "type": "numeric"
+          },
+          {
+            "name": "ozone_mean",
+            "description": "Daily mean ground-level Ozone (O3). Unit: µg/m³.",
+            "type": "numeric"
+          },
+          {
+            "name": "ozone_max",
+            "description": "Diurnal peak hourly ground-level Ozone concentration. Unit: µg/m³.",
+            "type": "numeric"
+          },
+          {
+            "name": "carbon_monoxide_mean",
+            "description": "Daily arithmetic mean concentration of Carbon Monoxide (CO). Unit: µg/m³.",
+            "type": "numeric"
+          },
+          {
+            "name": "carbon_monoxide_max",
+            "description": "Diurnal peak hourly concentration of CO. Unit: µg/m³.",
+            "type": "numeric"
+          },
+          {
+            "name": "aerosol_optical_depth_mean",
+            "description": "Daily average total Aerosol Optical Depth at 550 nm. Unit: Dimensionless.",
+            "type": "numeric"
+          },
+          {
+            "name": "aerosol_optical_depth_max",
+            "description": "Diurnal peak Aerosol Optical Depth. Unit: Dimensionless.",
+            "type": "numeric"
+          },
+          {
+            "name": "dust_mean",
+            "description": "Daily average atmospheric mineral dust mass concentration. Unit: µg/m³.",
+            "type": "numeric"
+          },
+          {
+            "name": "dust_max",
+            "description": "Diurnal peak atmospheric dust concentration. Unit: µg/m³.",
+            "type": "numeric"
+          },
+          {
+            "name": "uv_index_max",
+            "description": "Daily peak hourly UV index. Unit: Index (0–12+).",
+            "type": "numeric"
+          },
+          {
+            "name": "us_aqi_mean",
+            "description": "Daily mean of Open-Meteo's hourly US AQI (each hour is the highest pollutant sub-index). Unit: Index (0–500).",
+            "type": "numeric"
+          },
+          {
+            "name": "us_aqi_max",
+            "description": "Daily maximum of the hourly US AQI. Unit: Index (0–500).",
+            "type": "numeric"
+          },
+          {
+            "name": "aqi_category",
+            "description": "US EPA category of us_aqi_max: Good (0-50), Moderate (51-100), Unhealthy for Sensitive Groups (101-150), Unhealthy (151-200), Very Unhealthy (201-300), Hazardous (301+).",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "path": "sri_lanka_dsd_air_quality_2025.csv",
+      "description": "Daily air quality for all 339 DSDs of Sri Lanka in 2025: one row per DSD per day, no missing values.",
+      "schema": {
+        "fields": [
+          {
+            "name": "date",
+            "description": "Observation date in Sri Lanka Standard Time (UTC+05:30).",
+            "type": "datetime"
+          },
+          {
+            "name": "province_name",
+            "description": "One of the 9 administrative Provinces of Sri Lanka.",
+            "type": "string"
+          },
+          {
+            "name": "province_pcode",
+            "description": "Official UN OCHA standard administrative P-code for the Province.",
+            "type": "string"
+          },
+          {
+            "name": "district_name",
+            "description": "One of the 25 administrative Districts of Sri Lanka.",
+            "type": "string"
+          },
+          {
+            "name": "district_pcode",
+            "description": "Official UN OCHA standard administrative P-code for the District.",
+            "type": "string"
+          },
+          {
+            "name": "dsd_name",
+            "description": "Name of the Divisional Secretariat Division (ADM Level 3).",
+            "type": "string"
+          },
+          {
+            "name": "dsd_pcode",
+            "description": "Official UN OCHA standard administrative P-code for the DSD.",
+            "type": "string"
+          },
+          {
+            "name": "latitude",
+            "description": "Latitude of the DSD polygon centroid (WGS84, decimal degrees).",
+            "type": "numeric"
+          },
+          {
+            "name": "longitude",
+            "description": "Longitude of the DSD polygon centroid (WGS84, decimal degrees).",
+            "type": "numeric"
+          },
+          {
+            "name": "area_sqkm",
+            "description": "Geographic surface area of the division in square kilometers (km²).",
+            "type": "numeric"
+          },
+          {
+            "name": "pm2_5_mean",
+            "description": "Daily 24-hour mean mass concentration of fine particles (≤ 2.5 µm). Unit: µg/m³.",
+            "type": "numeric"
+          },
+          {
+            "name": "pm2_5_min",
+            "description": "Diurnal minimum hourly concentration of PM2.5. Unit: µg/m³.",
+            "type": "numeric"
+          },
+          {
+            "name": "pm2_5_max",
+            "description": "Diurnal peak (maximum) hourly concentration of PM2.5. Unit: µg/m³.",
+            "type": "numeric"
+          },
+          {
+            "name": "pm10_mean",
+            "description": "Daily 24-hour mean mass concentration of coarse respirable particles (≤ 10 µm). Unit: µg/m³.",
+            "type": "numeric"
+          },
+          {
+            "name": "pm10_min",
+            "description": "Diurnal minimum hourly concentration of PM10. Unit: µg/m³.",
+            "type": "numeric"
+          },
+          {
+            "name": "pm10_max",
+            "description": "Diurnal peak (maximum) hourly concentration of PM10. Unit: µg/m³.",
+            "type": "numeric"
+          },
+          {
+            "name": "nitrogen_dioxide_mean",
+            "description": "Daily arithmetic mean concentration of Nitrogen Dioxide (NO2). Unit: µg/m³.",
+            "type": "numeric"
+          },
+          {
+            "name": "nitrogen_dioxide_max",
+            "description": "Diurnal peak hourly concentration of NO2. Unit: µg/m³.",
+            "type": "numeric"
+          },
+          {
+            "name": "sulphur_dioxide_mean",
+            "description": "Daily arithmetic mean concentration of Sulphur Dioxide (SO2). Unit: µg/m³.",
+            "type": "numeric"
+          },
+          {
+            "name": "sulphur_dioxide_max",
+            "description": "Diurnal peak hourly concentration of SO2. Unit: µg/m³.",
+            "type": "numeric"
+          },
+          {
+            "name": "ozone_mean",
+            "description": "Daily mean ground-level Ozone (O3). Unit: µg/m³.",
+            "type": "numeric"
+          },
+          {
+            "name": "ozone_max",
+            "description": "Diurnal peak hourly ground-level Ozone concentration. Unit: µg/m³.",
+            "type": "numeric"
+          },
+          {
+            "name": "carbon_monoxide_mean",
+            "description": "Daily arithmetic mean concentration of Carbon Monoxide (CO). Unit: µg/m³.",
+            "type": "numeric"
+          },
+          {
+            "name": "carbon_monoxide_max",
+            "description": "Diurnal peak hourly concentration of CO. Unit: µg/m³.",
+            "type": "numeric"
+          },
+          {
+            "name": "aerosol_optical_depth_mean",
+            "description": "Daily average total Aerosol Optical Depth at 550 nm. Unit: Dimensionless.",
+            "type": "numeric"
+          },
+          {
+            "name": "aerosol_optical_depth_max",
+            "description": "Diurnal peak Aerosol Optical Depth. Unit: Dimensionless.",
+            "type": "numeric"
+          },
+          {
+            "name": "dust_mean",
+            "description": "Daily average atmospheric mineral dust mass concentration. Unit: µg/m³.",
+            "type": "numeric"
+          },
+          {
+            "name": "dust_max",
+            "description": "Diurnal peak atmospheric dust concentration. Unit: µg/m³.",
+            "type": "numeric"
+          },
+          {
+            "name": "uv_index_max",
+            "description": "Daily peak hourly UV index. Unit: Index (0–12+).",
+            "type": "numeric"
+          },
+          {
+            "name": "us_aqi_mean",
+            "description": "Daily mean of Open-Meteo's hourly US AQI (each hour is the highest pollutant sub-index). Unit: Index (0–500).",
+            "type": "numeric"
+          },
+          {
+            "name": "us_aqi_max",
+            "description": "Daily maximum of the hourly US AQI. Unit: Index (0–500).",
+            "type": "numeric"
+          },
+          {
+            "name": "aqi_category",
+            "description": "US EPA category of us_aqi_max: Good (0-50), Moderate (51-100), Unhealthy for Sensitive Groups (101-150), Unhealthy (151-200), Very Unhealthy (201-300), Hazardous (301+).",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "path": "sri_lanka_dsd_air_quality_2026.csv",
+      "description": "Daily air quality for all 339 DSDs of Sri Lanka in 2026: one row per DSD per day, no missing values. Updated daily; ends at yesterday.",
+      "schema": {
+        "fields": [
+          {
+            "name": "date",
+            "description": "Observation date in Sri Lanka Standard Time (UTC+05:30).",
+            "type": "datetime"
+          },
+          {
+            "name": "province_name",
+            "description": "One of the 9 administrative Provinces of Sri Lanka.",
+            "type": "string"
+          },
+          {
+            "name": "province_pcode",
+            "description": "Official UN OCHA standard administrative P-code for the Province.",
+            "type": "string"
+          },
+          {
+            "name": "district_name",
+            "description": "One of the 25 administrative Districts of Sri Lanka.",
+            "type": "string"
+          },
+          {
+            "name": "district_pcode",
+            "description": "Official UN OCHA standard administrative P-code for the District.",
+            "type": "string"
+          },
+          {
+            "name": "dsd_name",
+            "description": "Name of the Divisional Secretariat Division (ADM Level 3).",
+            "type": "string"
+          },
+          {
+            "name": "dsd_pcode",
+            "description": "Official UN OCHA standard administrative P-code for the DSD.",
+            "type": "string"
+          },
+          {
+            "name": "latitude",
+            "description": "Latitude of the DSD polygon centroid (WGS84, decimal degrees).",
+            "type": "numeric"
+          },
+          {
+            "name": "longitude",
+            "description": "Longitude of the DSD polygon centroid (WGS84, decimal degrees).",
+            "type": "numeric"
+          },
+          {
+            "name": "area_sqkm",
+            "description": "Geographic surface area of the division in square kilometers (km²).",
+            "type": "numeric"
+          },
+          {
+            "name": "pm2_5_mean",
+            "description": "Daily 24-hour mean mass concentration of fine particles (≤ 2.5 µm). Unit: µg/m³.",
+            "type": "numeric"
+          },
+          {
+            "name": "pm2_5_min",
+            "description": "Diurnal minimum hourly concentration of PM2.5. Unit: µg/m³.",
+            "type": "numeric"
+          },
+          {
+            "name": "pm2_5_max",
+            "description": "Diurnal peak (maximum) hourly concentration of PM2.5. Unit: µg/m³.",
+            "type": "numeric"
+          },
+          {
+            "name": "pm10_mean",
+            "description": "Daily 24-hour mean mass concentration of coarse respirable particles (≤ 10 µm). Unit: µg/m³.",
+            "type": "numeric"
+          },
+          {
+            "name": "pm10_min",
+            "description": "Diurnal minimum hourly concentration of PM10. Unit: µg/m³.",
+            "type": "numeric"
+          },
+          {
+            "name": "pm10_max",
+            "description": "Diurnal peak (maximum) hourly concentration of PM10. Unit: µg/m³.",
+            "type": "numeric"
+          },
+          {
+            "name": "nitrogen_dioxide_mean",
+            "description": "Daily arithmetic mean concentration of Nitrogen Dioxide (NO2). Unit: µg/m³.",
+            "type": "numeric"
+          },
+          {
+            "name": "nitrogen_dioxide_max",
+            "description": "Diurnal peak hourly concentration of NO2. Unit: µg/m³.",
+            "type": "numeric"
+          },
+          {
+            "name": "sulphur_dioxide_mean",
+            "description": "Daily arithmetic mean concentration of Sulphur Dioxide (SO2). Unit: µg/m³.",
+            "type": "numeric"
+          },
+          {
+            "name": "sulphur_dioxide_max",
+            "description": "Diurnal peak hourly concentration of SO2. Unit: µg/m³.",
+            "type": "numeric"
+          },
+          {
+            "name": "ozone_mean",
+            "description": "Daily mean ground-level Ozone (O3). Unit: µg/m³.",
+            "type": "numeric"
+          },
+          {
+            "name": "ozone_max",
+            "description": "Diurnal peak hourly ground-level Ozone concentration. Unit: µg/m³.",
+            "type": "numeric"
+          },
+          {
+            "name": "carbon_monoxide_mean",
+            "description": "Daily arithmetic mean concentration of Carbon Monoxide (CO). Unit: µg/m³.",
+            "type": "numeric"
+          },
+          {
+            "name": "carbon_monoxide_max",
+            "description": "Diurnal peak hourly concentration of CO. Unit: µg/m³.",
+            "type": "numeric"
+          },
+          {
+            "name": "aerosol_optical_depth_mean",
+            "description": "Daily average total Aerosol Optical Depth at 550 nm. Unit: Dimensionless.",
+            "type": "numeric"
+          },
+          {
+            "name": "aerosol_optical_depth_max",
+            "description": "Diurnal peak Aerosol Optical Depth. Unit: Dimensionless.",
+            "type": "numeric"
+          },
+          {
+            "name": "dust_mean",
+            "description": "Daily average atmospheric mineral dust mass concentration. Unit: µg/m³.",
+            "type": "numeric"
+          },
+          {
+            "name": "dust_max",
+            "description": "Diurnal peak atmospheric dust concentration. Unit: µg/m³.",
+            "type": "numeric"
+          },
+          {
+            "name": "uv_index_max",
+            "description": "Daily peak hourly UV index. Unit: Index (0–12+).",
+            "type": "numeric"
+          },
+          {
+            "name": "us_aqi_mean",
+            "description": "Daily mean of Open-Meteo's hourly US AQI (each hour is the highest pollutant sub-index). Unit: Index (0–500).",
+            "type": "numeric"
+          },
+          {
+            "name": "us_aqi_max",
+            "description": "Daily maximum of the hourly US AQI. Unit: Index (0–500).",
+            "type": "numeric"
+          },
+          {
+            "name": "aqi_category",
+            "description": "US EPA category of us_aqi_max: Good (0-50), Moderate (51-100), Unhealthy for Sensitive Groups (101-150), Unhealthy (151-200), Very Unhealthy (201-300), Hazardous (301+).",
+            "type": "string"
+          }
+        ]
+      }
+    }
+  ],
+  "expectedUpdateFrequency": "daily",
+  "userSpecifiedSources": "Copernicus Atmosphere Monitoring Service (CAMS) global atmospheric composition model (ECMWF), via the Open-Meteo Air Quality API (https://open-meteo.com/en/docs/air-quality-api). DSD boundaries and P-codes: UN OCHA / Survey Department of Sri Lanka.",
+  "collectionMethodology": "Hourly CAMS values are fetched from Open-Meteo at each DSD polygon centroid and aggregated to daily mean, minimum and maximum over the Sri Lanka calendar day (UTC+05:30). Only completed days (up to yesterday) are kept, and the last 3 days are re-fetched to pick up revisions. A GitHub Actions job runs this every day at 08:30 Sri Lanka time. Full method: https://github.com/th33k/dataset-sri-lanka-air-quality/blob/main/docs/METHODOLOGY.md"
+}

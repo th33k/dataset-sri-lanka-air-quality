@@ -152,7 +152,7 @@ python examples/analyze_air_quality.py
 
 ## 6. Automated Continuous Integration Pipeline (GitHub Actions)
 
-This repository includes a scheduled **GitHub Actions CI/CD workflow** ([`.github/workflows/daily_update.yml`](.github/workflows/daily_update.yml)) that runs **daily at 03:00 UTC (08:30 AM Sri Lanka Standard Time)**:
+This repository includes a scheduled **GitHub Actions CI/CD workflow** ([`.github/workflows/daily_update.yml`](.github/workflows/daily_update.yml)) that runs **daily at 03:00 AM Sri Lanka Standard Time (21:30 UTC)**; GitHub may start scheduled runs late:
 
 1. **Completed days only:** Keeps observations from 2023-01-01 up to *yesterday* (Asia/Colombo). Today and future dates are CAMS forecasts and are never stored.
 2. **Gap repair:** Finds every missing (date, DSD) pair in that window and fetches only those date ranges, then re-fetches the last 3 days in case values were revised.
