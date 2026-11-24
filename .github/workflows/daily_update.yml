@@ -56,5 +56,6 @@ jobs:
             echo "KAGGLE_API_TOKEN secret not set; skipping Kaggle upload."
             exit 0
           fi
-          pip install -U kaggle
+          # six: kaggle 2.x imports it but does not declare it as a dependency
+          pip install -U kaggle six
           kaggle datasets version -p data/processed -m "Daily update $(date -u +%Y-%m-%d)"
